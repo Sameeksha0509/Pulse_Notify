@@ -1,0 +1,66 @@
+{
+  "info": {
+    "name": "PulseNotify API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"alice\",\n  \"password\": \"securepass\",\n  \"email\": \"alice@example.com\"\n}"},
+        "url": {"raw": "http://localhost:8000/api/auth/register/", "host": ["http://localhost:8000"], "path": ["api", "auth", "register", ""]}
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"username\": \"alice\",\n  \"password\": \"securepass\"\n}"},
+        "url": {"raw": "http://localhost:8000/api/auth/login/", "host": ["http://localhost:8000"], "path": ["api", "auth", "login", ""]}
+      }
+    },
+    {
+      "name": "Create Alert",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}, {"key": "Content-Type", "value": "application/json"}],
+        "body": {"mode": "raw", "raw": "{\n  \"origin\": \"DEL\",\n  \"destination\": \"BOM\",\n  \"threshold_price\": 4500\n}"},
+        "url": {"raw": "http://localhost:8000/api/alerts/", "host": ["http://localhost:8000"], "path": ["api", "alerts", ""]}
+      }
+    },
+    {
+      "name": "List Alerts",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+        "url": {"raw": "http://localhost:8000/api/alerts/", "host": ["http://localhost:8000"], "path": ["api", "alerts", ""]}
+      }
+    },
+    {
+      "name": "Delete Alert",
+      "request": {
+        "method": "DELETE",
+        "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+        "url": {"raw": "http://localhost:8000/api/alerts/1/", "host": ["http://localhost:8000"], "path": ["api", "alerts", "1", ""]}
+      }
+    },
+    {
+      "name": "Mock Flight Price",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:8000/api/flights/price/?route=DEL-BOM", "host": ["http://localhost:8000"], "path": ["api", "flights", "price", ""], "query": [{"key": "route", "value": "DEL-BOM"}]}
+      }
+    },
+    {
+      "name": "Admin Summary",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{access_token}}"}],
+        "url": {"raw": "http://localhost:8000/api/admin/summary/", "host": ["http://localhost:8000"], "path": ["api", "admin", "summary", ""]}
+      }
+    }
+  ]
+}
